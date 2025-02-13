@@ -12,12 +12,12 @@ const Header = () => {
               <div className="logo flex justify-between items-center gap-5">
                 <div className="flex gap-5">
                   <img
-                    className="cursor-pointer"
+                    className="cursor-pointer size-[75px]"
                     src={`${imgPath}/not-sure-logo.png`}
                     alt="philippines"
                   />
                   <img
-                    className="cursor-pointer"
+                    className="cursor-pointer size-[75px]"
                     src={`${imgPath}/red-cross-logo.png`}
                     alt="red-cross-logo"
                   />
