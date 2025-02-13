@@ -12,12 +12,12 @@ const Header = () => {
               <div className="logo flex justify-between items-center gap-5">
                 <div className="flex gap-5">
                   <img
-                    className="cursor-pointer size-[75px]"
+                    className="cursor-pointer w-[50px]"
                     src={`${imgPath}/not-sure-logo.png`}
                     alt="philippines"
                   />
                   <img
-                    className="cursor-pointer size-[75px]"
+                    className="cursor-pointer w-[75px]"
                     src={`${imgPath}/red-cross-logo.png`}
                     alt="red-cross-logo"
                   />
@@ -39,7 +39,7 @@ const Header = () => {
                   </li>
                 </ul>
               </nav>
-              <button className="text-white text-sm tracking-wider border border-white p-4 rounded-md hover:text-black hover:bg-white transition-all">
+              <button className="text-white text-sm tracking-wider border border-white border-opacity-40 p-4 rounded-md hover:text-black hover:bg-white transition-all">
                 DONATE NOW
               </button>
             </div>
