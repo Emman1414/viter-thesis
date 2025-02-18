@@ -8,7 +8,7 @@ const Header = () => {
       <div>
         <header className="bg-myred">
           <div className="container">
-            <div className="flex justify-between items-center p-5">
+            <div className="flex justify-between items-center p-4">
               <div className="logo flex justify-between items-center gap-5">
                 <div className="flex gap-5">
                   <img
