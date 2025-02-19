@@ -69,7 +69,7 @@ const Chatbot = () => {
                 }`}
               >
                 <div
-                  className={`p-2 rounded-lg max-w-xs break-words ${
+                  className={`p-2 rounded-lg max-w-xs break-words overflow-x-auto ${
                     msg.sender === "user"
                       ? "bg-myred text-white"
                       : "bg-gray-200 text-gray-800"
