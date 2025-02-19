@@ -3,6 +3,7 @@ import Header from "./Header";
 import { imgPath } from "@/components/helpers/functions-general";
 import { MessageSquare } from "lucide-react";
 import Chatbot from "./ChatBot";
+import LiveDateTime from "./LiveDateTime";
 
 const MainPage = () => {
   return (
@@ -44,14 +45,7 @@ const MainPage = () => {
               <div className="flex justify-end text-center w-auto max-w-[500px] overflow-auto">
                 <div className="flex flex-col items-center gap-2">
                   <h6 className="max-w-[150px]">Philippine Standard Time:</h6>
-                  <ul className="flex gap-3">
-                    <li className="border border-white text-blue-500 rounded-md p-1 px-2 bg-gray-200">
-                      <small>Jun 10, 2025</small>
-                    </li>
-                    <li className="border border-white text-blue-500 rounded-md p-1 px-2 bg-gray-200">
-                      <small>09:41AM</small>
-                    </li>
-                  </ul>
+                  <LiveDateTime />
                 </div>
               </div>
             </div>
@@ -61,7 +55,7 @@ const MainPage = () => {
               "
               >
                 <li className="flex p-3">
-                  <Chatbot/>
+                  <Chatbot />
                 </li>
               </ul>
             </div>

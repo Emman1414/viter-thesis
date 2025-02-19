@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { X, MessageCircle, SendHorizontal } from "lucide-react"; // Icons for UI
+import { X, MessageCircle, SendHorizontal, MessageSquare } from "lucide-react"; // Icons for UI
 import { imgPath } from "@/components/helpers/functions-general";
 
 const MAX_WORDS = 50; // Maximum allowed words per sent message
@@ -109,9 +109,9 @@ const Chatbot = () => {
       {!isOpen && (
         <button
           onClick={toggleChat}
-          className="bg-blue-500 text-white p-4 rounded-full shadow-lg flex items-center justify-center hover:bg-blue-600 transition-all"
+          className="bg-white border-2 border-gray-300 p-4 rounded-full shadow-lg flex items-center justify-center hover:bg-myred hover:border-white transition-all"
         >
-          <MessageCircle className="w-6 h-6" />
+          <MessageSquare className="w-6 h-6 b" fill="white" strokeWidth="1" />
         </button>
       )}
     </div>
