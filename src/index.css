@@ -97,13 +97,13 @@
     @apply hover:border-black hover:border-b-2;
   }
 
-  .banner-slider .slick-dots {
+  /* .banner-slider .slick-dots {
     @apply absolute !bottom-5 md:!bottom-10 !left-1/2 !-translate-x-1/2;
   }
 
   .banner-slider .slick-slider .slick-dots button::before {
     @apply text-white text-xs;
-  }
+  } */
 
   .tooltip {
     @apply relative p-2 rounded-md transition-all hover:bg-black hover:text-white cursor-pointer;
@@ -310,6 +310,65 @@
   .center-all {
     @apply flex justify-center items-center;
   }
+}
+
+/* SLIDERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR */
+.slick-list {
+  height: 400px !important; /* Match the image height */
+  overflow: hidden; /* Hide overflow */
+}
+
+/* SLIDER DOT */
+
+.slick-dots {
+  position: absolute;
+  bottom: 5px; /* Adjust this based on your layout */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  background-color: gray;
+  border-radius: 10rem;
+  width: auto;
+  height: 25px;
+}
+
+.slick-dots li {
+  padding: 5px;
+}
+
+.slick-dots li button {
+  width: 10px;
+  height: 10px;
+  background-color: black;
+  border-radius: 50%;
+  font-size: 0; /* Hides numbers */
+  transform: translateY(-5px);
+  border: none;
+  cursor: pointer;
+}
+
+.slick-dots li.slick-active button {
+  background-color: white; /* Active dot color */
+}
+
+.slick-track {
+  height: 400px !important; /* Set to match slide height */
+  display: flex !important; /* Align slides properly */
+}
+
+.slick-slide {
+  display: flex !important; /* Ensure it aligns properly */
+  justify-content: center;
+  align-items: center;
+}
+
+.slick-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Prevent stretching */
 }
 
 /* width */
