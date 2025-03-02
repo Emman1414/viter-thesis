@@ -20,9 +20,9 @@ const SliderMain = () => {
   };
 
   return (
-    <div className=" w-full max-w-[600px] h-[400px] mx-auto overflow-hidden">
+    <div className=" w-full max-w-[600px] h-[450px] mx-auto overflow-hidden z-0 relative">
       {/* Slider Component */}
-      <Slider ref={sliderRef} {...settings} className="w-full h-full">
+      <Slider ref={sliderRef} {...settings} className="">
         {images.map((item, index) => (
           <SliderItem key={index} img={item.image} />
         ))}
@@ -30,7 +30,7 @@ const SliderMain = () => {
 
       {/* Custom Prev Button */}
       <button
-        className="absolute -bottom-4 left-16 transform -translate-y-1/2 bg-gray-500 text-white px-3 py-1 rounded"
+        className="absolute -bottom-2 left-16 transform -translate-y-1/2 bg-gray-500 text-white px-3 py-1 rounded"
         onClick={() => sliderRef.current.slickPrev()}
       >
         {"< Prev"}
@@ -38,7 +38,7 @@ const SliderMain = () => {
 
       {/* Custom Next Button */}
       <button
-        className="absolute -bottom-4 right-16 transform -translate-y-1/2 bg-gray-500 text-white px-3 py-1 rounded"
+        className="absolute -bottom-2 right-16 transform -translate-y-1/2 bg-gray-500 text-white px-3 py-1 rounded"
         onClick={() => sliderRef.current.slickNext()}
       >
         {"Next >"}

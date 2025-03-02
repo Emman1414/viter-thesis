@@ -34,9 +34,9 @@
 }
 
 @layer base {
-  /* * {
+  * {
     @apply border border-red-500;
-  } */
+  }
   h1 {
     @apply text-[clamp(35px,_6vw,_50px)];
   }
@@ -83,7 +83,7 @@
   }
 
   .container {
-    @apply max-w-[1800px] mx-auto px-4;
+    @apply max-w-[1200px] mx-auto px-4;
   }
   .main-nav .active {
     @apply text-red-600;
@@ -173,6 +173,13 @@
   .table-wrapper {
     @apply max-h-[69vh] overflow-y-auto overflow-x-hidden;
   }
+
+  /* -------FAQ--------------------------------------- */
+  /* .faq-contents,
+  .faq-contensts span.open,
+  .faq-drop {
+    @apply transition-all;
+  } */
 
   /* OTHER--------------------------------------------- */
 
@@ -322,7 +329,7 @@
 
 .slick-dots {
   position: absolute;
-  bottom: 5px; /* Adjust this based on your layout */
+  bottom: 10px; /* Adjust this based on your layout */
   left: 50%;
   transform: translateX(-50%);
   display: flex !important;
@@ -345,7 +352,7 @@
   background-color: black;
   border-radius: 50%;
   font-size: 0; /* Hides numbers */
-  transform: translateY(-5px);
+  transform: translateY(-6px);
   border: none;
   cursor: pointer;
 }
@@ -369,6 +376,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover; /* Prevent stretching */
+  z-index: -10;
 }
 
 /* width */
