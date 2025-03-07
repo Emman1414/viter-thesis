@@ -11,7 +11,7 @@ const AvailBlood = () => {
       <section className="py-5 mt-[100px]">
         <div className="container mx-auto max-w-[1600px] py-2">
           <div className="">
-            <div className="grid lg:grid-cols-[2fr_1fr_0.5fr_190px]">
+            <div className="flex flex-col-reverse lg:grid lg:grid-cols-[2fr_1fr_0.5fr_190px] ">
               {/* BLOCK 1 */}
               <div className="text p-5">
                 <div className="texts">
@@ -51,9 +51,9 @@ const AvailBlood = () => {
                 </div>
               </div>
               {/* BLOCK 2 */}
-              <div className="relative max-w-[1200px]">
+              <div className="relative max-w-[1200px] lg:block flex justify-center items-center">
                 <img
-                  className="max-w-[700px] object-cover -right-2/3 -z-50 absolute"
+                  className=" lg:max-w-[700px] max-w-[250px] object-cover lg:-right-2/3 -z-50 lg:absolute"
                   src={`${imgPath}/red-cross.png`}
                   alt=""
                 />

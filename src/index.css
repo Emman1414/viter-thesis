@@ -34,9 +34,9 @@
 }
 
 @layer base {
-  * {
+  /* * {
     @apply border border-red-500;
-  }
+  } */
   h1 {
     @apply text-[clamp(35px,_6vw,_50px)];
   }
@@ -448,4 +448,26 @@ input::-webkit-inner-spin-button {
     position: static;
     transform: translateY(-50px)
   }
+}
+
+
+/* CHATBOX */
+/* Show chatbox on larger screens */
+.chatbox {
+    display: block;
+}
+
+/* Hide chatbox and only show button on small screens */
+@media (max-width: 768px) {
+    .chatbox {
+        display: none;
+    }
+
+    .chat-button {
+        display: block;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 999;
+    }
 }
