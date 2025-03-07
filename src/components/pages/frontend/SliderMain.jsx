@@ -30,7 +30,7 @@ const SliderMain = () => {
 
       {/* Custom Prev Button */}
       <button
-        className="absolute -bottom-2 left-16 transform -translate-y-1/2 bg-gray-500 text-white px-3 py-1 rounded"
+        className="absolute -bottom-2 left-16 transform -translate-y-1/2 bg-gray-500 text-white px-3 py-1 rounded hidden lg:block"
         onClick={() => sliderRef.current.slickPrev()}
       >
         {"< Prev"}
@@ -38,7 +38,7 @@ const SliderMain = () => {
 
       {/* Custom Next Button */}
       <button
-        className="absolute -bottom-2 right-16 transform -translate-y-1/2 bg-gray-500 text-white px-3 py-1 rounded"
+        className="absolute -bottom-2 right-16 transform -translate-y-1/2 bg-gray-500 text-white px-3 py-1 rounded hidden lg:block"
         onClick={() => sliderRef.current.slickNext()}
       >
         {"Next >"}

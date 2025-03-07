@@ -436,3 +436,16 @@ input::-webkit-inner-spin-button {
 .index {
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
+
+@media screen and (max-width: 520px) {
+  .slick-dots,
+  .slick-dots li,
+  .slick-dots li button,
+  .slick-dots li.slick-active button {
+    visibility: hidden;
+  }
+  .slick-list{
+    position: static;
+    transform: translateY(-50px)
+  }
+}

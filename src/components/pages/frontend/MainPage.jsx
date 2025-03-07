@@ -11,15 +11,15 @@ const MainPage = () => {
 
       {/* Push content down to avoid header overlap */}
       <section className="py-5 mt-[100px]">
-        <div className="container mx-auto px-6 max-w-[1600px]">
-          <div className="grid grid-cols-[2fr_1fr_100px_250px] gap-6 h-[calc(100vh-200px)]">
+        <div className="container mx-auto px-6 max-w-[1600px] py-2">
+          <div className="grid grid-cols-1 md:grid-cols-[2fr_1.5fr] lg:grid-cols-[2fr_1.5fr_100px_250px] gap-6 h-auto md:h-[calc(100vh-200px)]">
             {/* BLOCK 1 - Slider */}
-            <div className="sliderMain relative h-full">
+            <div className="sliderMain relative h-[300px] md:h-full">
               <SliderMain />
             </div>
 
             {/* BLOCK 2 - Constrained scrollable content */}
-            <div className="flex flex-col p-3 bg-gray-100 rounded-lg shadow-md h-full overflow-y-auto">
+            <div className="flex flex-col p-3 bg-gray-100 rounded-lg shadow-md h-auto md:h-full overflow-y-auto">
               <h4 className="font-bold mb-1">Philippine Red Cross</h4>
               <h6 className="opacity-70 mb-1.5">Background</h6>
               <p>
@@ -40,11 +40,11 @@ const MainPage = () => {
               </p>
             </div>
 
-            {/* BLOCK 3 - Empty */}
-            <div className="h-full"></div>
+            {/* BLOCK 3 - Empty (hidden on mobile) */}
+            <div className="hidden lg:block h-full"></div>
 
             {/* BLOCK 4 - Live Time */}
-            <div className="flex justify-end text-center w-auto max-w-[500px] h-full">
+            <div className="flex justify-end text-center w-full max-w-[500px] h-auto md:h-full hidden lg:block">
               <div className="flex flex-col items-center gap-2">
                 <h6 className="max-w-[150px]">Philippine Standard Time:</h6>
                 <LiveDateTime />

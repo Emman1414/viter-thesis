@@ -18,9 +18,9 @@ const BloodDrive = () => {
   return (
     <>
       <Header />
-      <section className="py-5">
-        <div className="container">
-          <div className="h-[calc(1240px-675px)]">
+      <section className="py-5 mt-[100px]">
+        <div className="container mx-auto px-6 max-w-[1600px] py-2">
+          <div className="">
             <div className="grid grid-cols-[2fr_0.5fr_190px]">
               {/* FAQ Section */}
               <div className="faq-contents">

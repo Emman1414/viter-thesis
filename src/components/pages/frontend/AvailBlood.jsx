@@ -8,10 +8,10 @@ const AvailBlood = () => {
   return (
     <>
       <Header />
-      <section className="py-5">
-        <div className="container">
-          <div className="h-[calc(1240px-675px)]">
-            <div className="grid grid-cols-[2fr_1fr_0.5fr_190px]">
+      <section className="py-5 mt-[100px]">
+        <div className="container mx-auto max-w-[1600px] py-2">
+          <div className="">
+            <div className="grid lg:grid-cols-[2fr_1fr_0.5fr_190px]">
               {/* BLOCK 1 */}
               <div className="text p-5">
                 <div className="texts">
@@ -60,20 +60,18 @@ const AvailBlood = () => {
               </div>
               {/* BLOCK 3 */}
               <div className=""></div>
-              {/* BLOCK 4 */}
-              <div className="flex justify-end text-center w-auto max-w-[500px] overflow-auto">
+              {/* BLOCK 4 - Live Time */}
+              <div className="flex justify-end text-center w-full max-w-[500px] h-auto md:h-full hidden lg:block">
                 <div className="flex flex-col items-center gap-2">
                   <h6 className="max-w-[150px]">Philippine Standard Time:</h6>
                   <LiveDateTime />
                 </div>
               </div>
             </div>
+
             {/* CHATBOT AND ETC. */}
             <div className="flex relative p-2">
-              <ul
-                className="absolute top-10 right-5
-              "
-              >
+              <ul className="absolute top-10 right-5 z-50">
                 <li className="flex p-3">
                   <Chatbot />
                 </li>
