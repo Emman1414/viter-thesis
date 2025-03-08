@@ -18,14 +18,14 @@ const Header = () => {
               <Link to="/">
                 <img
                   className="cursor-pointer w-[50px]"
-                  src="/not-sure-logo.png"
+                  src="../img/not-sure-logo.png"
                   alt="philippines"
                 />
               </Link>
               <Link to="/">
                 <img
                   className="cursor-pointer w-[75px]"
-                  src="/red-cross-logo.png"
+                  src="../img/red-cross-logo.png"
                   alt="red-cross-logo"
                 />
               </Link>
