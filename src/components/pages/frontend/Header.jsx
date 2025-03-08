@@ -17,20 +17,20 @@ const Header = () => {
             <div className="flex gap-5">
               <Link to="/">
                 <img
-                  className="cursor-pointer w-[50px]"
+                  className="cursor-pointer lg:w-[50px]"
                   src="../img/not-sure-logo.png"
                   alt="philippines"
                 />
               </Link>
               <Link to="/">
                 <img
-                  className="cursor-pointer w-[75px]"
+                  className="cursor-pointer lg:w-[75px]"
                   src="../img/red-cross-logo.png"
                   alt="red-cross-logo"
                 />
               </Link>
             </div>
-            <h5 className="text-white text-xl font-normal">
+            <h5 className="text-white text-sm lg:text-xl font-normal">
               Philippine Red Cross - San Pablo City Chapter
             </h5>
           </div>
