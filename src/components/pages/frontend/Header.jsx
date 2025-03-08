@@ -10,7 +10,7 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full text-white bg-myred z-50">
-      <div className="container">
+      <div className="max-w-[1280px] mx-auto px-4">
         <div className="flex justify-between items-center p-4 gap-7">
           {/* Logo */}
           <div className="logo flex justify-between items-center gap-2">
@@ -44,7 +44,7 @@ const Header = () => {
             <div className="flex justify-end p-5 lg:hidden">
               <X className="cursor-pointer size-8" onClick={toggleNav} />
             </div>
-            <ul className="flex flex-col lg:flex-row gap-5 text-body text-[18px] items-center justify-center h-full">
+            <ul className="navi flex flex-col lg:flex-row gap-5 text-body text-[18px] items-center justify-center h-full">
               <NavLink to="/" onClick={toggleNav}>
                 <House className="hover:text-black p-1 size-8 border border-transparent rounded-full hover:border-white hover:bg-white lg:mr-6 md:mr-0" />
               </NavLink>
@@ -59,14 +59,26 @@ const Header = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/about" onClick={toggleNav}>
+                <NavLink
+                  to="/about"
+                  onClick={toggleNav}
+                  className="pointer-events-none text-gray-400"
+                >
                   About Us
+                </NavLink>
+              </li>
+              {/* Donate Button for Mobile */}
+              <li className="lg:hidden">
+                <NavLink to="/donate" onClick={toggleNav}>
+                  <button className="text-white text-sm tracking-wider border border-white border-opacity-40 p-4 rounded-md hover:text-black hover:bg-white transition-all">
+                    DONATE NOW
+                  </button>
                 </NavLink>
               </li>
             </ul>
           </nav>
 
-          {/* Donate Button */}
+          {/* Donate Button for Desktop */}
           <div className="navi-button hidden lg:block">
             <NavLink to="/donate">
               <button className="text-white text-sm tracking-wider border border-white border-opacity-40 p-4 rounded-md hover:text-black hover:bg-white transition-all">
