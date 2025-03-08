@@ -1,5 +1,5 @@
 import React from "react";
-import { StoreReducer } from "./StoreReducer";
+import { StoreReducer } from "./storeReducer";
 
 const initVal = {
   error: false,
