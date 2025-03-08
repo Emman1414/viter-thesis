@@ -44,7 +44,7 @@ const Chatbot = () => {
             <span className="flex gap-2 items-center justify-center text-center">
               <img
                 className="size-4"
-                src={`${imgPath}/red-cross-logo.png`}
+                src="../img/red-cross-logo.png"
                 alt="Philippine Red Cross Logo"
               />
               Philippine Red Cross
