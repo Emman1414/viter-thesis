@@ -54,7 +54,7 @@ const AvailBlood = () => {
               <div className="relative max-w-[1200px] lg:block flex justify-center items-center">
                 <img
                   className=" lg:max-w-[700px] max-w-[250px] object-cover lg:-right-2/3 -z-50 lg:absolute"
-                  src={`${imgPath}/red-cross.png`}
+                  src="/red-cross.png"
                   alt=""
                 />
               </div>
