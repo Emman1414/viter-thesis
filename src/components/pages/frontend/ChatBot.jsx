@@ -8,9 +8,17 @@ const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
 
   useEffect(() => {
     setMessages([{ sender: "bot", text: "Hello! What is your concern?" }]);
+
+    const handleResize = () => {
+      setIsKeyboardOpen(window.innerHeight < window.screen.height * 0.8);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const toggleChat = () => {
@@ -38,7 +46,11 @@ const Chatbot = () => {
     <div className="fixed bottom-6 right-6">
       {/* Chatbox */}
       {isOpen && (
-        <div className="fixed bottom-0 right-0 md:bottom-6 md:right-6 w-full h-full md:w-80 md:h-96 bg-white shadow-lg rounded-lg flex flex-col overflow-hidden z-50">
+        <div
+          className={`fixed bottom-0 right-0 md:bottom-6 md:right-6 w-full h-full md:w-80 ${
+            isKeyboardOpen ? "h-[60%]" : "md:h-96"
+          } bg-white shadow-lg rounded-lg flex flex-col overflow-hidden z-50`}
+        >
           {/* Header */}
           <div className="bg-myred text-white p-3 flex justify-between items-center">
             <span className="flex gap-2 items-center justify-center text-center">
