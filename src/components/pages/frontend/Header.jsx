@@ -10,7 +10,7 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full text-white bg-myred z-50">
-      <div className="max-w-[1280px] mx-auto px-4">
+      <div className="max-w-[1400px] mx-auto px-4">
         <div className="flex justify-between items-center p-4 gap-7">
           {/* Logo */}
           <div className="logo flex justify-between items-center gap-2">
@@ -59,6 +59,11 @@ const Header = () => {
                 </NavLink>
               </li>
               <li>
+                <NavLink to="/" onClick={toggleNav}>
+                  Donate Blood
+                </NavLink>
+              </li>
+              <li>
                 <NavLink
                   to="/about"
                   onClick={toggleNav}
@@ -82,7 +87,7 @@ const Header = () => {
           <div className="navi-button hidden lg:block">
             <NavLink to="/donate">
               <button className="text-white text-sm tracking-wider border border-white border-opacity-40 p-4 rounded-md hover:text-black hover:bg-white transition-all">
-                DONATE NOW
+                REGISTER NOW
               </button>
             </NavLink>
           </div>

@@ -1,8 +1,7 @@
-import React from "react";
 import Header from "./Header";
-import DonateForm from "./DonateForm";
+import RegisterForm from "./RegisterForm";
 
-const DonatePage = () => {
+const RegisterPage = () => {
   return (
     <>
       <Header />
@@ -166,9 +165,9 @@ const DonatePage = () => {
       <div className="border mx-10 my-10"></div>
       {/* LINE */}
       {/* panel 3 - form */}
-      <DonateForm />
+      <RegisterForm />
     </>
   );
 };
 
-export default DonatePage;
+export default RegisterPage;

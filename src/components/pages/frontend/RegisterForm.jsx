@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Header from "./Header";
 
-const DonateForm = () => {
+const RegisterForm = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     address: "",
@@ -184,4 +184,4 @@ const DonateForm = () => {
   );
 };
 
-export default DonateForm;
+export default RegisterForm;
