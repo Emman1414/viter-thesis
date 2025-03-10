@@ -1,13 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { X, SendHorizontal, MessageSquare } from "lucide-react"; // Icons for UI
+import { X, SendHorizontal, MessageSquare } from "lucide-react";
+import {
+  getIntent,
+  getFAQResponse,
+  checkEligibility,
+} from "@/components/pages/backend/py-chatBot/utils/chatbotAPI";
 import { imgPath } from "@/components/helpers/functions-general";
+import ReactMarkdown from "react-markdown";
 
-const MAX_WORDS = 50; // Maximum allowed words per sent message
+const MAX_WORDS = 50;
+const APPOINTMENT_FORM_LINK = "https://redcross.org/appointment";
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
+  const [eligibilityStep, setEligibilityStep] = useState(0);
+  const [eligibilityData, setEligibilityData] = useState({
+    age: "",
+    weight: "",
+    bloodPressure: "",
+    medicalConditions: "",
+  });
+  const [waitingForEligibilityResponse, setWaitingForEligibilityResponse] =
+    useState(false);
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
 
   useEffect(() => {
@@ -25,7 +41,7 @@ const Chatbot = () => {
     setIsOpen((prev) => !prev);
   };
 
-  const handleSendMessage = (text) => {
+  const handleSendMessage = async (text) => {
     if (!text.trim()) return;
 
     const words = text.trim().split(/\s+/);
@@ -38,20 +54,79 @@ const Chatbot = () => {
       timestamp: Date.now(),
     };
     setMessages((prev) => [...prev, userMessage]);
-
     setInput("");
+
+    if (waitingForEligibilityResponse) {
+      await handleEligibilityInput(trimmedText);
+      return;
+    }
+
+    const intent = await getIntent(trimmedText);
+    const faqResponse = await getFAQResponse(trimmedText);
+    let botMessage;
+
+    if (intent === "eligibility_check" || intent === "appointment_booking") {
+      botMessage = {
+        sender: "bot",
+        text: `${faqResponse} Would you like to check your eligibility for donation? (Yes/No)`,
+      };
+      setWaitingForEligibilityResponse(true);
+    } else {
+      botMessage = {
+        sender: "bot",
+        text: faqResponse || "I don't have an answer for that.",
+      };
+    }
+
+    setMessages((prev) => [...prev, botMessage]);
+  };
+
+  const handleEligibilityInput = (text) => {
+    let botMessage;
+
+    if (eligibilityStep === 0) {
+      if (text.toLowerCase() === "yes") {
+        setEligibilityStep(1);
+        botMessage = {
+          sender: "bot",
+          text: "Let's check your eligibility! First, what is your *age*?",
+        };
+      } else if (text.toLowerCase() === "no") {
+        botMessage = {
+          sender: "bot",
+          text: "Okay! Let me know if you have any other questions.",
+        };
+        resetEligibilityFlow();
+      } else {
+        botMessage = {
+          sender: "bot",
+          text: "I didn’t understand that. Please answer with 'Yes' or 'No'.",
+        };
+      }
+    }
+
+    if (botMessage) setMessages((prev) => [...prev, botMessage]);
+  };
+
+  const resetEligibilityFlow = () => {
+    setEligibilityStep(0);
+    setEligibilityData({
+      age: "",
+      weight: "",
+      bloodPressure: "",
+      medicalConditions: "",
+    });
+    setWaitingForEligibilityResponse(false);
   };
 
   return (
     <div className="fixed bottom-6 right-6">
-      {/* Chatbox */}
       {isOpen && (
         <div
           className={`fixed bottom-0 right-0 md:bottom-6 md:right-6 w-full h-full md:w-80 ${
             isKeyboardOpen ? "h-[60%]" : "md:h-96"
           } bg-white shadow-lg rounded-lg flex flex-col overflow-hidden z-50`}
         >
-          {/* Header */}
           <div className="bg-myred text-white p-3 flex justify-between items-center">
             <span className="flex gap-2 items-center justify-center text-center">
               <img
@@ -66,7 +141,6 @@ const Chatbot = () => {
             </button>
           </div>
 
-          {/* Chat Messages */}
           <div className="flex-grow p-3 overflow-y-auto">
             {messages.map((msg, index) => (
               <div
@@ -82,13 +156,12 @@ const Chatbot = () => {
                       : "bg-gray-200 text-gray-800"
                   }`}
                 >
-                  {msg.text}
+                  <ReactMarkdown>{msg.text}</ReactMarkdown>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Input Field */}
           <div className="p-3 border-t flex">
             <input
               type="text"
@@ -96,11 +169,7 @@ const Chatbot = () => {
               placeholder="Type your message..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  handleSendMessage(input);
-                }
-              }}
+              onKeyDown={(e) => e.key === "Enter" && handleSendMessage(input)}
             />
             <button
               className="text-myred px-4 rounded-r-lg m-2"
@@ -112,7 +181,6 @@ const Chatbot = () => {
         </div>
       )}
 
-      {/* Floating Chat Button: show only when chatbox is closed */}
       {!isOpen && (
         <button
           onClick={toggleChat}
