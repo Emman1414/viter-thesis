@@ -43,7 +43,6 @@ const Chatbot = () => {
 
   const handleSendMessage = async (text) => {
     if (!text.trim()) return;
-
     const words = text.trim().split(/\s+/);
     const trimmedText =
       words.length > MAX_WORDS ? words.slice(0, MAX_WORDS).join(" ") : text;
@@ -81,7 +80,7 @@ const Chatbot = () => {
     setMessages((prev) => [...prev, botMessage]);
   };
 
-  const handleEligibilityInput = (text) => {
+  const handleEligibilityInput = async (text) => {
     let botMessage;
 
     if (eligibilityStep === 0) {
@@ -128,7 +127,7 @@ const Chatbot = () => {
           } bg-white shadow-lg rounded-lg flex flex-col overflow-hidden z-50`}
         >
           <div className="bg-myred text-white p-3 flex justify-between items-center">
-            <span className="flex gap-2 items-center justify-center text-center">
+            <span className="flex gap-2 items-center justify-center">
               <img
                 className="size-4"
                 src="../img/red-cross-logo.png"
@@ -150,7 +149,7 @@ const Chatbot = () => {
                 }`}
               >
                 <div
-                  className={`p-2 rounded-lg max-w-xs break-words overflow-x-auto ${
+                  className={`p-2 rounded-lg max-w-xs break-words ${
                     msg.sender === "user"
                       ? "bg-myred text-white"
                       : "bg-gray-200 text-gray-800"
@@ -184,7 +183,7 @@ const Chatbot = () => {
       {!isOpen && (
         <button
           onClick={toggleChat}
-          className="bg-white border-2 border-gray-300 p-4 rounded-full shadow-lg flex items-center justify-center hover:bg-myred hover:border-white transition-all"
+          className="bg-white border-2 border-gray-300 p-4 rounded-full shadow-lg hover:bg-myred"
         >
           <MessageSquare className="w-6 h-6" fill="white" strokeWidth="1" />
         </button>
