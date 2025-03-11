@@ -6,7 +6,7 @@ import os
 
 
 # ✅ Define paths for model, scaler, and label encoders
-BASE_PATH = "src/components/pages/backend/chatbotModels/eligibility_model/"
+BASE_PATH = "src/components/pages/backend/py-chatBot/chatbotModels/eligibility_model/"
 MODEL_PATH = os.path.join(BASE_PATH, "faq_random_forest.pkl")
 SCALER_PATH = os.path.join(BASE_PATH, "scaler.pkl")
 ENCODER_BP_PATH = os.path.join(BASE_PATH, "label_encoder_bp.pkl")
