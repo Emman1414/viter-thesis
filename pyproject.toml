@@ -1,4 +1,5 @@
-[tool.poetry]
+[tool.poetry.scripts]
+start = "uvicorn src.components.pages.backend.main:app --host 0.0.0.0 --port $PORT"
 name = "my-fastapi-app"
 version = "0.1.0"
 description = "FastAPI app for Railway"
