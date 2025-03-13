@@ -39,7 +39,7 @@ model_path = "src/components/pages/backend/py-chatBot/chatbotModels/intent_recog
 tokenizer_path = "src/components/pages/backend/py-chatBot/chatbotModels/intent_recognition/Intent_Recognition_BERT_Tokenizer_1"
 
 # Load model and tokenizer
-model = BertForSequenceClassification.from_pretrained(model_path, local_files_only=True)
+model = BertForSequenceClassification.from_pretrained(model_path, local_files_only=True, from_tf=False)
 tokenizer = BertTokenizer.from_pretrained(tokenizer_path)
 
 print("Intent recognition model and tokenizer loaded successfully!")
