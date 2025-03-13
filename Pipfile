@@ -1,0 +1,13 @@
+[packages]
+fastapi = "*"
+uvicorn = "*"
+torch = "*"
+sentence-transformers = "*"
+safetensors = "*"
+numpy = "*"
+pandas = "*"
+
+[dev-packages]
+
+[scripts]
+start = "uvicorn src.components.pages.backend.main:app --host 0.0.0.0 --port $PORT"
