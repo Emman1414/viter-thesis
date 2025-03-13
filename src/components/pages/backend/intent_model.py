@@ -38,17 +38,15 @@ intent_mapping = {
 model_path = "src/components/pages/backend/py-chatBot/chatbotModels/intent_recognition/Intent_Recognition_BERT_Model_1"
 tokenizer_path = "src/components/pages/backend/py-chatBot/chatbotModels/intent_recognition/Intent_Recognition_BERT_Tokenizer_1"
 
-# Load model and tokenizer
+# Load Model
 model = BertForSequenceClassification.from_pretrained(
     model_path,
     local_files_only=True,
-    from_tf=False,
-    use_safetensors=False
+    use_safetensors=True
 )
 tokenizer = BertTokenizer.from_pretrained(tokenizer_path)
 
 print("Intent recognition model and tokenizer loaded successfully!")
-
 
 def get_intent(text):
     """Predict the intent of a user message"""
