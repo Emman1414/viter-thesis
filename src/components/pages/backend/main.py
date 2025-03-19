@@ -1,3 +1,6 @@
+import os
+import uvicorn
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
@@ -7,6 +10,11 @@ from src.components.pages.backend.faq_model import get_faq_answer  # Correct imp
 from src.components.pages.backend.eligibility_model import router as eligibility_router
 
 app = FastAPI()
+
+
+if __name__ == "__main__":
+    port = int(os.getenv("PORT", 8000))  # Get the port from environment variables or use 8000 as default
+    uvicorn.run("src.components.pages.backend.main:app", host="0.0.0.0", port=port, reload=True)
 
 # ✅ Include the eligibility model API
 app.include_router(eligibility_router)
