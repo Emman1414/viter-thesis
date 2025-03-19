@@ -4,6 +4,24 @@ FROM python:3.10-slim
 # Set the working directory
 WORKDIR /app
 
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libssl-dev \
+    libffi-dev \
+    libxml2-dev \
+    libxslt1-dev \
+    zlib1g-dev \
+    libjpeg-dev \
+    libblas-dev \
+    liblapack-dev \
+    gfortran \
+    gcc \
+    && apt-get clean
+
+# Upgrade pip
+RUN pip install --upgrade pip
+
 # Copy requirements.txt and install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
