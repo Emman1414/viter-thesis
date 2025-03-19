@@ -74,10 +74,11 @@ const Header = () => {
               </li>
               {/* Register Button for Desktop */}
               <button className="navi-button">
-                <NavLink to="/register">
-                  <button className="text-white text-sm tracking-wider border border-white border-opacity-40 p-4 rounded-md hover:text-black hover:bg-white transition-all">
-                    REGISTER NOW
-                  </button>
+                <NavLink
+                  to="/register"
+                  className={`text-white text-sm tracking-wider border border-white border-opacity-40 p-4 rounded-md hover:text-black hover:bg-white transition-all`}
+                >
+                  REGISTER NOW
                 </NavLink>
               </button>
             </ul>

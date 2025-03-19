@@ -7,6 +7,8 @@ import RegisterPage from "./components/pages/frontend/RegisterPage";
 import { StoreProvider } from "./components/store/storeContext";
 import EligibleForm from "./components/pages/frontend/EligibleForm";
 import DonateForm from "./components/pages/frontend/DonateForm";
+import ProtectedRoute from "./components/pages/backend/ProtectedRoute";
+
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -21,7 +23,14 @@ const App = () => {
             <Route path="/drive" element={<BloodDrive />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/eligible" element={<EligibleForm />} />
-            <Route path="/donate" element={<DonateForm />} />
+            <Route
+              path="/donate"
+              element={
+                <ProtectedRoute>
+                  <DonateForm />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </Router>
       </StoreProvider>

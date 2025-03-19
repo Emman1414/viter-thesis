@@ -49,8 +49,10 @@ const EligibleForm = () => {
       medication !== "disqualifying" &&
       lastDonationMonths >= 0
     ) {
+      sessionStorage.setItem("isEligible", "true"); // Store eligibility
       navigate("/donate");
     } else {
+      sessionStorage.setItem("isEligible", "false"); // Prevent access
       if (
         window.confirm(
           "You are not eligible to donate. Click OK to return to homepage."
