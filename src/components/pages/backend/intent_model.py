@@ -1,6 +1,6 @@
 import os
 import torch
-from transformers import DistilBertForSequenceClassification, DistilBertTokenizer
+from transformers import BertForSequenceClassification, BertTokenizer
 
 # Load label encoder for intent mapping
 intent_mapping = {
@@ -38,33 +38,27 @@ intent_mapping = {
 model_path = "src/components/pages/backend/py-chatBot/chatbotModels/intent_recognition/Intent_Recognition_BERT_Model_1"
 tokenizer_path = "src/components/pages/backend/py-chatBot/chatbotModels/intent_recognition/Intent_Recognition_BERT_Tokenizer_1"
 
-# Determine the device (GPU if available, else CPU)
+# Load Model
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(f"Using device: {device}")
-
-# Load the model with memory optimization
-# model = BertForSequenceClassification.from_pretrained(model_path,local_files_only=True)
-
-model = DistilBertForSequenceClassification.from_pretrained(
+model = BertForSequenceClassification.from_pretrained(
     model_path,
-    low_cpu_mem_usage=True,
-    torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32
+    from_tf=False,  # Ensure loading from PyTorch format
+    low_cpu_mem_usage=True
 ).to(device)
 
-# Load the tokenizer
-tokenizer = DistilBertTokenizer.from_pretrained(tokenizer_path)
+# Load Tokenizer
+tokenizer = BertTokenizer.from_pretrained(tokenizer_path)
 
-print("DistilBERT intent recognition model and tokenizer loaded successfully!")
+print("BERT intent recognition model and tokenizer loaded successfully!")
 
 def get_intent(text):
     """Predict the intent of a user message"""
-    # Tokenize the input text and move tensors to the appropriate device
     inputs = tokenizer(text, return_tensors="pt", truncation=True, padding=True, max_length=128).to(device)
 
     with torch.no_grad():
         outputs = model(**inputs)
 
     predicted_class = torch.argmax(outputs.logits, dim=1).item()
-    intent_label = list(intent_mapping.keys())[predicted_class]  
+    intent_label = list(intent_mapping.keys())[predicted_class]
 
     return intent_label
