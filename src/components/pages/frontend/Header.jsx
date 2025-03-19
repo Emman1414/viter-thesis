@@ -59,7 +59,7 @@ const Header = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/" onClick={toggleNav}>
+                <NavLink to="/eligible" onClick={toggleNav}>
                   Donate Blood
                 </NavLink>
               </li>
@@ -72,25 +72,16 @@ const Header = () => {
                   About Us
                 </NavLink>
               </li>
-              {/* Donate Button for Mobile */}
-              <li className="lg:hidden">
-                <NavLink to="/donate" onClick={toggleNav}>
+              {/* Register Button for Desktop */}
+              <button className="navi-button">
+                <NavLink to="/register">
                   <button className="text-white text-sm tracking-wider border border-white border-opacity-40 p-4 rounded-md hover:text-black hover:bg-white transition-all">
-                    DONATE NOW
+                    REGISTER NOW
                   </button>
                 </NavLink>
-              </li>
+              </button>
             </ul>
           </nav>
-
-          {/* Donate Button for Desktop */}
-          <div className="navi-button hidden lg:block">
-            <NavLink to="/donate">
-              <button className="text-white text-sm tracking-wider border border-white border-opacity-40 p-4 rounded-md hover:text-black hover:bg-white transition-all">
-                REGISTER NOW
-              </button>
-            </NavLink>
-          </div>
 
           {/* Burger Button */}
           <div className="lg:hidden">

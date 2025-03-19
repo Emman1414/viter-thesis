@@ -41,8 +41,7 @@ tokenizer_path = "src/components/pages/backend/py-chatBot/chatbotModels/intent_r
 # Load Model
 model = BertForSequenceClassification.from_pretrained(
     model_path,
-    local_files_only=True,
-    use_safetensors=True
+    local_files_only=True
 )
 tokenizer = BertTokenizer.from_pretrained(tokenizer_path)
 

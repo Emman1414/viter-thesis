@@ -1,5 +1,5 @@
 {
-  "_name_or_path": "bert-base-uncased",
+  "_name_or_path": "C:/xampp/htdocs/viter-thesis/src/components/pages/backend/py-chatBot/chatbotModels/intent_recognition/Intent_Recognition_BERT_Model_1",
   "architectures": [
     "BertForSequenceClassification"
   ],
@@ -80,7 +80,7 @@
   "position_embedding_type": "absolute",
   "problem_type": "single_label_classification",
   "torch_dtype": "float32",
-  "transformers_version": "4.48.2",
+  "transformers_version": "4.49.0",
   "type_vocab_size": 2,
   "use_cache": true,
   "vocab_size": 30522
