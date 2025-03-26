@@ -1,4 +1,3 @@
-import os
 import torch
 from transformers import BertForSequenceClassification, BertTokenizer
 
@@ -38,39 +37,20 @@ intent_mapping = {
 model_path = "src/components/pages/backend/py-chatBot/chatbotModels/intent_recognition/Intent_Recognition_BERT_Model_1"
 tokenizer_path = "src/components/pages/backend/py-chatBot/chatbotModels/intent_recognition/Intent_Recognition_BERT_Tokenizer_1"
 
-# Load Model
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# Load model and tokenizer
+model = BertForSequenceClassification.from_pretrained(model_path, use_safetensors=True)
+tokenizer = BertTokenizer.from_pretrained(tokenizer_path)
 
-try:
-    model = BertForSequenceClassification.from_pretrained(
-        model_path,
-        from_tf=False,  # Ensure loading from PyTorch format
-        torch_dtype=torch.float32,  # Use float32 for compatibility
-        low_cpu_mem_usage=True
-    ).to(device)
-    print("BERT intent recognition model loaded successfully!")
-except Exception as e:
-    print(f"Error loading BERT model: {e}")
-
-# Load Tokenizer
-try:
-    tokenizer = BertTokenizer.from_pretrained(tokenizer_path)
-    print("Tokenizer loaded successfully!")
-except Exception as e:
-    print(f"Error loading tokenizer: {e}")
+print("Intent recognition model and tokenizer loaded successfully!")
 
 def get_intent(text):
     """Predict the intent of a user message"""
-    try:
-        inputs = tokenizer(text, return_tensors="pt", truncation=True, padding=True, max_length=128).to(device)
+    inputs = tokenizer(text, return_tensors="pt", truncation=True, padding=True, max_length=128)
 
-        with torch.no_grad():
-            outputs = model(**inputs)
+    with torch.no_grad():
+        outputs = model(**inputs)
 
-        predicted_class = torch.argmax(outputs.logits, dim=1).item()
-        intent_label = list(intent_mapping.keys())[predicted_class]
+    predicted_class = torch.argmax(outputs.logits, dim=1).item()
+    intent_label = list(intent_mapping.keys())[predicted_class]  
 
-        return intent_label
-    except Exception as e:
-        print(f"Error predicting intent: {e}")
-        return "unknown_intent"
+    return intent_label

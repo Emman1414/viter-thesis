@@ -80,7 +80,7 @@ const Chatbot = () => {
     setMessages((prev) => [...prev, botMessage]);
   };
 
-  const handleEligibilityInput = async (text) => {
+  const handleEligibilityInput = (text) => {
     let botMessage;
 
     if (eligibilityStep === 0) {
@@ -88,7 +88,7 @@ const Chatbot = () => {
         setEligibilityStep(1);
         botMessage = {
           sender: "bot",
-          text: "Let's check your eligibility! First, what is your *age*?",
+          text: "Let's check your eligibility! First, what is your **age**?",
         };
       } else if (text.toLowerCase() === "no") {
         botMessage = {
@@ -102,6 +102,71 @@ const Chatbot = () => {
           text: "I didn’t understand that. Please answer with 'Yes' or 'No'.",
         };
       }
+    } else if (eligibilityStep === 1) {
+      const age = parseInt(text.match(/\d+/)?.[0] || "NaN");
+
+      if (isNaN(age) || age <= 0) {
+        botMessage = {
+          sender: "bot",
+          text: "Please enter a valid age (a number greater than 0).",
+        };
+      } else {
+        setEligibilityData((prev) => ({ ...prev, age }));
+        setEligibilityStep(2);
+        botMessage = {
+          sender: "bot",
+          text: "Got it! Now, what is your **weight (kg)**?",
+        };
+      }
+    } else if (eligibilityStep === 2) {
+      const weight = parseInt(text.match(/\d+/)?.[0] || "NaN");
+
+      if (isNaN(weight) || weight <= 0) {
+        botMessage = { sender: "bot", text: "Please enter a valid weight." };
+      } else {
+        setEligibilityData((prev) => ({ ...prev, weight }));
+        setEligibilityStep(3);
+        botMessage = {
+          sender: "bot",
+          text: "Thanks! What is your **blood pressure** (e.g., 120/80)?",
+        };
+      }
+    } else if (eligibilityStep === 3) {
+      setEligibilityData((prev) => ({ ...prev, bloodPressure: text }));
+      setEligibilityStep(4);
+      botMessage = {
+        sender: "bot",
+        text: "Great! Do you have any **medical conditions**? (Type 'None' if none)",
+      };
+    } else if (eligibilityStep === 4) {
+      let medicalConditions = text.trim().toLowerCase();
+      if (medicalConditions === "none") medicalConditions = "nan";
+
+      const formattedData = { ...eligibilityData, medicalConditions };
+      botMessage = { sender: "bot", text: "Checking your eligibility..." };
+      setMessages((prev) => [
+        ...prev,
+        { sender: "bot", text: "Checking your eligibility..." },
+      ]);
+
+      checkEligibility(
+        formattedData.age,
+        formattedData.weight,
+        formattedData.bloodPressure,
+        formattedData.medicalConditions
+      ).then((result) => {
+        let eligibilityResponse =
+          result === "Eligible"
+            ? {
+                sender: "bot",
+                text: `You are eligible to donate! Book an appointment here: ${APPOINTMENT_FORM_LINK}`,
+              }
+            : { sender: "bot", text: `You are not eligible to donate.` };
+        //: { sender: "bot", text: `You are not eligible to donate due to: **${result}**` };
+
+        setMessages((prev) => [...prev.slice(0, -1), eligibilityResponse]); // Replaces the last message
+        resetEligibilityFlow();
+      });
     }
 
     if (botMessage) setMessages((prev) => [...prev, botMessage]);
@@ -130,7 +195,7 @@ const Chatbot = () => {
             <span className="flex gap-2 items-center justify-center">
               <img
                 className="size-4"
-                src="../img/red-cross-logo.png"
+                src={`${imgPath}/red-cross-logo.png`}
                 alt="Philippine Red Cross Logo"
               />
               Philippine Red Cross
@@ -149,7 +214,7 @@ const Chatbot = () => {
                 }`}
               >
                 <div
-                  className={`p-2 rounded-lg max-w-xs break-words ${
+                  className={`p-2 rounded-lg max-w-xs break-words overflow-x-auto ${
                     msg.sender === "user"
                       ? "bg-myred text-white"
                       : "bg-gray-200 text-gray-800"
