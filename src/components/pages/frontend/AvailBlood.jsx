@@ -62,10 +62,10 @@ const AvailBlood = () => {
               <div className=""></div>
               {/* BLOCK 4 - Live Time */}
               <div className="flex justify-end text-center w-full max-w-[500px] h-auto md:h-full hidden lg:block">
-                <div className="flex flex-col items-center gap-2">
+                {/* <div className="flex flex-col items-center gap-2">
                   <h6 className="max-w-[150px]">Philippine Standard Time:</h6>
                   <LiveDateTime />
-                </div>
+                </div> */}
               </div>
             </div>
 

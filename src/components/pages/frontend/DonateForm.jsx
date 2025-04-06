@@ -23,13 +23,29 @@ const DonateForm = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    if (
-      window.confirm(
-        "Thank you for filling up, we'll provide the details later."
-      )
-    ) {
-      navigate("/");
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbxfNIag7-k57V72dJ94dismQI49_99ARl_YJtOTXwOgKIPznK0AV9Su3UMp2Un_2Q8WbA/exec",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData), // Use formData instead of requestBody
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log("Response from server:", result);
+      alert(result.message || "Form submitted successfully!");
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert(
+        "Failed to submit form. Please check your connection and try again."
+      );
     }
   };
 
@@ -59,6 +75,7 @@ const DonateForm = () => {
                   value={formData.firstName}
                   onChange={handleChange}
                   className="w-full p-2 border rounded"
+                  required
                 />
               </div>
               <div>
@@ -70,6 +87,7 @@ const DonateForm = () => {
                   value={formData.lastName}
                   onChange={handleChange}
                   className="w-full p-2 border rounded"
+                  required
                 />
               </div>
             </div>
@@ -83,18 +101,20 @@ const DonateForm = () => {
                 value={formData.email}
                 onChange={handleChange}
                 className="w-full p-2 border rounded"
+                required
               />
             </div>
 
             <div className="mt-4">
               <label className="block mb-2">Phone Number</label>
               <input
-                type="text"
+                type="tel"
                 name="phoneNumber"
                 placeholder="Enter your phone number"
                 value={formData.phoneNumber}
                 onChange={handleChange}
                 className="w-full p-2 border rounded"
+                required
               />
             </div>
 
@@ -106,6 +126,7 @@ const DonateForm = () => {
                 value={formData.address}
                 onChange={handleChange}
                 className="w-full p-2 border rounded h-24"
+                required
               />
             </div>
 
@@ -116,6 +137,7 @@ const DonateForm = () => {
                 value={formData.donationType}
                 onChange={handleChange}
                 className="w-full p-2 border rounded"
+                required
               >
                 <option value="">Select donation type</option>
                 <option value="wholeBlood">Whole Blood</option>
@@ -133,6 +155,7 @@ const DonateForm = () => {
                 value={formData.preferredDate}
                 onChange={handleChange}
                 className="w-full p-2 border rounded"
+                required
               />
             </div>
 

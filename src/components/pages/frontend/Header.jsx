@@ -11,20 +11,13 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 w-full text-white bg-myred z-50">
       <div className="max-w-[1400px] mx-auto px-4">
-        <div className="flex justify-between items-center p-4 gap-7">
+        <div className="flex justify-between items-center p-5 gap-7">
           {/* Logo */}
           <div className="logo flex justify-between items-center gap-2">
             <div className="flex gap-5">
               <Link to="/">
                 <img
-                  className="cursor-pointer lg:w-[50px]"
-                  src="../img/not-sure-logo.png"
-                  alt="philippines"
-                />
-              </Link>
-              <Link to="/">
-                <img
-                  className="cursor-pointer lg:w-[75px]"
+                  className="cursor-pointer lg:w-[60px]"
                   src="../img/red-cross-logo.png"
                   alt="red-cross-logo"
                 />
@@ -73,14 +66,7 @@ const Header = () => {
                 </NavLink>
               </li>
               {/* Register Button for Desktop */}
-              <button className="navi-button">
-                <NavLink
-                  to="/register"
-                  className={`text-white text-sm tracking-wider border border-white border-opacity-40 p-4 rounded-md hover:text-black hover:bg-white transition-all`}
-                >
-                  REGISTER NOW
-                </NavLink>
-              </button>
+              <div></div>
             </ul>
           </nav>
 

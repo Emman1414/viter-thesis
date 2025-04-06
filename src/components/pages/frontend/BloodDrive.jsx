@@ -58,13 +58,14 @@ const BloodDrive = () => {
                 </div>
               ))}
             </div>
+            <div></div>
 
             {/* Time Section */}
             <div className="flex justify-end text-center w-auto max-w-[500px] overflow-auto hidden lg:block">
-              <div className="flex flex-col items-center gap-2">
+              {/* <div className="flex flex-col items-center gap-2">
                 <h6 className="max-w-[150px]">Philippine Standard Time:</h6>
                 <LiveDateTime />
-              </div>
+              </div> */}
             </div>
 
             {/* CHATBOT AND ETC. */}

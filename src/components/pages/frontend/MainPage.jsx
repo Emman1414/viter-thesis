@@ -19,7 +19,7 @@ const MainPage = () => {
             </div>
 
             {/* BLOCK 2 - Constrained scrollable content */}
-            <div className="flex flex-col p-3 bg-gray-100 rounded-lg shadow-md h-auto md:h-full overflow-y-auto">
+            <div className="flex flex-col p-3 h-auto md:h-full overflow-y-auto">
               <h4 className="font-bold mb-1">Philippine Red Cross</h4>
               <h6 className="opacity-70 mb-1.5">Background</h6>
               <p>
@@ -45,10 +45,10 @@ const MainPage = () => {
 
             {/* BLOCK 4 - Live Time */}
             <div className="flex justify-end text-center w-full max-w-[500px] h-auto md:h-full hidden lg:block">
-              <div className="flex flex-col items-center gap-2">
+              {/* <div className="flex flex-col items-center gap-2">
                 <h6 className="max-w-[150px]">Philippine Standard Time:</h6>
                 <LiveDateTime />
-              </div>
+              </div> */}
             </div>
           </div>
 
